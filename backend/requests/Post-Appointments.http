@@ -1,0 +1,8 @@
+POST http://localhost:3000/appointments
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiYzMzMTBkOS03ZjQ3LTQ1YzYtODMzNS02OWJlOWRhNjAzMjAiLCJlbWFpbCI6ImRhbmllbEBlbWFpbC5jb20iLCJpYXQiOjE3NzY4MTMxNzcsImV4cCI6MTc3NjgxNjc3N30.11Ys_9JYADppT_4WS8f9wb-p7ezYfSJsktebkZaEi68
+Content-Type: application/json
+
+
+{
+  "date": "2026-04-25T14:00:00.000Z"
+}
