@@ -1,7 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, BadRequestException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
-import { BadRequestException } from '@nestjs/common';
 
 type AppointmentWithUser = Prisma.AppointmentGetPayload<{
   include: { user: true };
@@ -11,10 +10,26 @@ type AppointmentWithUser = Prisma.AppointmentGetPayload<{
 export class AppointmentsService {
   constructor(private prisma: PrismaService) {}
 
+  // ✅ Método privado da classe (padrão correto)
+  private roundToNearest30(date: Date): Date {
+    const minutes = date.getMinutes();
+    const roundedMinutes = minutes < 30 ? 0 : 30;
+
+    date.setMinutes(roundedMinutes);
+    date.setSeconds(0);
+    date.setMilliseconds(0);
+
+    return date;
+  }
+
   async create(userId: string, date: Date) {
+    // ✅ aplica regra de negócio antes de tudo
+    const roundedDate = this.roundToNearest30(date);
+
+    // ✅ validação de conflito
     const existingAppointment = await this.prisma.appointment.findFirst({
       where: {
-        date,
+        date: roundedDate,
       },
     });
 
@@ -24,7 +39,10 @@ export class AppointmentsService {
 
     try {
       return await this.prisma.appointment.create({
-        data: { userId, date },
+        data: {
+          userId,
+          date: roundedDate,
+        },
       });
     } catch (error) {
       console.error(error);
