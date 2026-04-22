@@ -22,12 +22,14 @@ export class AppointmentsService {
       throw new BadRequestException('This time slot is already booked');
     }
 
-    return this.prisma.appointment.create({
-      data: {
-        userId,
-        date,
-      },
-    });
+    try {
+      return await this.prisma.appointment.create({
+        data: { userId, date },
+      });
+    } catch (error) {
+      console.error(error);
+      throw new BadRequestException('This time slot is already booked');
+    }
   }
 
   findAll(): Promise<AppointmentWithUser[]> {

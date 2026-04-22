@@ -17,7 +17,7 @@ model User {
 
 model Appointment {
   id        String   @id @default(uuid())
-  date      DateTime
+  date      DateTime @unique
   userId    String
   user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
