@@ -32,8 +32,11 @@ export class AppointmentsController {
 
   @UseGuards(JwtAuthGuard)
   @Get('available')
-  getAvailable(@Query('date') date: string) {
-    return this.service.getAvailableSlots(new Date(date));
+  getAvailable(
+    @Query('date') date: string,
+    @Query('barberId') barberId: string,
+  ) {
+    return this.service.getAvailableSlots(new Date(date), barberId);
   }
   findAll() {
     return this.service.findAll();

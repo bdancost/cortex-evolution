@@ -59,7 +59,7 @@ export class AppointmentsService {
     });
   }
 
-  async getAvailableSlots(date: Date) {
+  async getAvailableSlots(date: Date, barberId: string) {
     const startHour = 9;
     const endHour = 18;
 
@@ -79,6 +79,7 @@ export class AppointmentsService {
 
     const appointments = await this.prisma.appointment.findMany({
       where: {
+        barberId,
         date: {
           gte: startOfDay,
           lte: endOfDay,
