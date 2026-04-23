@@ -21,4 +21,14 @@ model Appointment {
   userId    String
   user      User     @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
+  barber    Barber   @relation(fields: [barberId], references: [id])
+  barberId  String
+}
+
+model Barber {
+  id        String   @id @default(uuid())
+  name      String
+  createdAt DateTime @default(now())
+
+  appointments Appointment[]
 }

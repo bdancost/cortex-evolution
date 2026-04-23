@@ -8,78 +8,29 @@ type AppointmentWithUser = Prisma.AppointmentGetPayload<{
 
 @Injectable()
 export class AppointmentsService {
-  private readonly START_HOUR = 9;
-  private readonly END_HOUR = 18;
+  constructor(private prisma: PrismaService) {}
 
-  constructor(private readonly prisma: PrismaService) {}
-
-  // ========================
-  // Helpers
-  // ========================
-
+  // ✅ Método privado da classe (padrão correto)
   private roundToNearest30(date: Date): Date {
     const minutes = date.getMinutes();
     const roundedMinutes = minutes < 30 ? 0 : 30;
 
-    date.setMinutes(roundedMinutes, 0, 0);
+    date.setMinutes(roundedMinutes);
+    date.setSeconds(0);
+    date.setMilliseconds(0);
+
     return date;
   }
 
-  private formatHour(hour: number): string {
-    return hour.toString().padStart(2, '0');
-  }
-
-  private generateSlots(): string[] {
-    const slots: string[] = [];
-
-    for (let hour = this.START_HOUR; hour < this.END_HOUR; hour++) {
-      const h = this.formatHour(hour);
-      slots.push(`${h}:00`, `${h}:30`);
-    }
-
-    return slots;
-  }
-
-  private getDayRange(date: Date) {
-    const start = new Date(date);
-    start.setHours(0, 0, 0, 0);
-
-    const end = new Date(date);
-    end.setHours(23, 59, 59, 999);
-
-    return { start, end };
-  }
-
-  private formatDateToSlot(date: Date): string {
-    const hour = this.formatHour(date.getHours());
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-    return `${hour}:${minutes}`;
-  }
-
-  private filterPastSlots(slots: string[]): string[] {
-    const now = new Date();
-    const currentHour = now.getHours();
-    const currentMinutes = now.getMinutes();
-
-    return slots.filter((slot) => {
-      const [hour, minutes] = slot.split(':').map(Number);
-
-      if (hour > currentHour) return true;
-      if (hour === currentHour && minutes > currentMinutes) return true;
-
-      return false;
-    });
-  }
-
-  // ========================
-  // Core methods
-  // ========================
-
-  async create(userId: string, date: Date) {
+  async create(userId: string, barberId: string, date: Date) {
+    // ✅ aplica regra de negócio antes de tudo
     const roundedDate = this.roundToNearest30(date);
 
+    // ✅ validação de conflito
     const existingAppointment = await this.prisma.appointment.findFirst({
-      where: { date: roundedDate },
+      where: {
+        date: roundedDate,
+      },
     });
 
     if (existingAppointment) {
@@ -88,7 +39,11 @@ export class AppointmentsService {
 
     try {
       return await this.prisma.appointment.create({
-        data: { userId, date: roundedDate },
+        data: {
+          userId,
+          barberId,
+          date: roundedDate,
+        },
       });
     } catch (error) {
       console.error(error);
@@ -98,36 +53,66 @@ export class AppointmentsService {
 
   findAll(): Promise<AppointmentWithUser[]> {
     return this.prisma.appointment.findMany({
-      include: { user: true },
+      include: {
+        user: true,
+      },
     });
   }
 
   async getAvailableSlots(date: Date) {
-    const slots = this.generateSlots();
+    const startHour = 9;
+    const endHour = 18;
 
-    const { start, end } = this.getDayRange(date);
+    const slots: string[] = [];
+
+    for (let hour = startHour; hour < endHour; hour++) {
+      const h = hour.toString().padStart(2, '0');
+      slots.push(`${h}:00`);
+      slots.push(`${h}:30`);
+    }
+
+    const startOfDay = new Date(date);
+    startOfDay.setHours(0, 0, 0, 0);
+
+    const endOfDay = new Date(date);
+    endOfDay.setHours(23, 59, 59, 999);
 
     const appointments = await this.prisma.appointment.findMany({
       where: {
         date: {
-          gte: start,
-          lte: end,
+          gte: startOfDay,
+          lte: endOfDay,
         },
       },
     });
 
-    const bookedSlots = appointments.map((appt) =>
-      this.formatDateToSlot(appt.date),
-    );
+    const bookedSlots = appointments.map((appt) => {
+      const hour = appt.date.getHours().toString().padStart(2, '0');
+      const minutes = appt.date.getMinutes().toString().padStart(2, '0');
+      return `${hour}:${minutes}`;
+    });
 
     const availableSlots = slots.filter((slot) => !bookedSlots.includes(slot));
 
-    const isToday = date.toDateString() === new Date().toDateString();
+    const now = new Date();
+
+    const isToday = date.toDateString() === now.toDateString();
 
     if (!isToday) {
       return availableSlots;
     }
 
-    return this.filterPastSlots(availableSlots);
+    const currentHour = now.getHours();
+    const currentMinutes = now.getMinutes();
+
+    return availableSlots.filter((slot) => {
+      const [hour, minutes] = slot.split(':').map(Number);
+
+      if (hour > currentHour) return true;
+
+      if (hour === currentHour && minutes > currentMinutes) return true;
+
+      return false;
+    });
   }
 }

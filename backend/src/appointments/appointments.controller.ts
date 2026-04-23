@@ -23,8 +23,11 @@ export class AppointmentsController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() body: { date: string }, @Request() req: RequestWithUser) {
-    return this.service.create(req.user.id, new Date(body.date));
+  create(
+    @Body() body: { date: string; barberId: string },
+    @Request() req: RequestWithUser,
+  ) {
+    return this.service.create(req.user.id, body.barberId, new Date(body.date));
   }
 
   @UseGuards(JwtAuthGuard)
