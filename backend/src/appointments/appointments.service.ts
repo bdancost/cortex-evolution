@@ -37,6 +37,10 @@ export class AppointmentsService {
       throw new BadRequestException('This time slot is already booked');
     }
 
+    if (date < new Date()) {
+      throw new BadRequestException('Cannot create appointment in the past');
+    }
+
     try {
       return await this.prisma.appointment.create({
         data: {

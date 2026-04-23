@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { AppointmentsService } from './appointments.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { CreateAppointmentDto } from './dto/create-appointment.dto';
 
 type RequestWithUser = Request & {
   user: {
@@ -23,10 +24,7 @@ export class AppointmentsController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
-  create(
-    @Body() body: { date: string; barberId: string },
-    @Request() req: RequestWithUser,
-  ) {
+  create(@Body() body: CreateAppointmentDto, @Request() req: RequestWithUser) {
     return this.service.create(req.user.id, body.barberId, new Date(body.date));
   }
 
