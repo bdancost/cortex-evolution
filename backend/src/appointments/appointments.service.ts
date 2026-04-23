@@ -57,4 +57,42 @@ export class AppointmentsService {
       },
     });
   }
+
+  async getAvailableSlots(date: Date) {
+    const startHour = 9;
+    const endHour = 18;
+
+    const slots: string[] = [];
+
+    for (let hour = startHour; hour < endHour; hour++) {
+      const h = hour.toString().padStart(2, '0');
+      slots.push(`${h}:00`);
+      slots.push(`${h}:30`);
+    }
+
+    const startOfDay = new Date(date);
+    startOfDay.setHours(0, 0, 0, 0);
+
+    const endOfDay = new Date(date);
+    endOfDay.setHours(23, 59, 59, 999);
+
+    const appointments = await this.prisma.appointment.findMany({
+      where: {
+        date: {
+          gte: startOfDay,
+          lte: endOfDay,
+        },
+      },
+    });
+
+    const bookedSlots = appointments.map((appt) => {
+      const hour = appt.date.getHours().toString().padStart(2, '0');
+      const minutes = appt.date.getMinutes().toString().padStart(2, '0');
+      return `${hour}:${minutes}`;
+    });
+
+    const availableSlots = slots.filter((slot) => !bookedSlots.includes(slot));
+
+    return availableSlots;
+  }
 }

@@ -5,6 +5,7 @@ import {
   Get,
   UseGuards,
   Request,
+  Query,
 } from '@nestjs/common';
 import { AppointmentsService } from './appointments.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -27,7 +28,10 @@ export class AppointmentsController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get()
+  @Get('available')
+  getAvailable(@Query('date') date: string) {
+    return this.service.getAvailableSlots(new Date(date));
+  }
   findAll() {
     return this.service.findAll();
   }
