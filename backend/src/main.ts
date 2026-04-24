@@ -6,14 +6,12 @@ import { HttpExceptionFilter } from './common/http-exception.filter';
 import { LoggingInterceptor } from './common/logging.interceptor';
 import { RolesGuard } from './common/roles/roles.guard';
 import { Reflector } from '@nestjs/core';
-import { ThrottlerGuard } from '@nestjs/throttler';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // ✅ pega do container do Nest
   const reflector = app.get(Reflector);
-  const throttlerGuard = app.get(ThrottlerGuard);
 
   app.useGlobalPipes(
     new ValidationPipe({
@@ -27,8 +25,7 @@ async function bootstrap() {
   app.useGlobalInterceptors(new LoggingInterceptor());
 
   app.useGlobalFilters(new HttpExceptionFilter());
-
-  app.useGlobalGuards(new RolesGuard(reflector), throttlerGuard);
+  app.useGlobalGuards(new RolesGuard(reflector));
 
   await app.listen(process.env.PORT ?? 3000);
 }
