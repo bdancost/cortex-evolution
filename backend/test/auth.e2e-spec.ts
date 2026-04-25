@@ -1,12 +1,19 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { AppModule } from '../src/app.module';
+import { Server } from 'http';
+
+type LoginResponse = {
+  access_token: string;
+};
+
+let server: Server;
 
 describe('Auth & Protected Routes (E2E)', () => {
   let app: INestApplication<unknown>;
   let http: ReturnType<typeof request>;
+  let token: string;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -16,8 +23,12 @@ describe('Auth & Protected Routes (E2E)', () => {
     app = moduleFixture.createNestApplication();
     await app.init();
 
-    // ✅ cast controlado e único ponto de "any"
-    http = request(app.getHttpServer() as any);
+    server = app.getHttpServer() as Server;
+    http = request(server);
+  });
+
+  afterAll(async () => {
+    await app.close();
   });
 
   it('should register and login successfully', async () => {
@@ -38,19 +49,30 @@ describe('Auth & Protected Routes (E2E)', () => {
 
     // 3️⃣ Validar token
     expect(response.body).toHaveProperty('access_token');
-  });
 
-  afterAll(async () => {
-    await app.close();
+    const body = response.body as LoginResponse;
+
+    token = body.access_token;
   });
 
   it('should not allow access without token', async () => {
-    await request(app.getHttpServer() as any)
+    await http
       .post('/appointments')
       .send({
         barberId: 'fake-id',
         date: new Date().toISOString(),
       })
       .expect(401);
+  });
+
+  it('should allow access with valid token (but fail with invalid barber)', async () => {
+    await http
+      .post('/appointments')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        barberId: 'fake-id',
+        date: new Date(Date.now() + 60 * 60 * 1000).toISOString(),
+      })
+      .expect(400);
   });
 });
