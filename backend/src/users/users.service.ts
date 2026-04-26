@@ -2,7 +2,7 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import * as bcrypt from 'bcrypt';
-import { Prisma } from '@prisma/client';
+import { Prisma, Role } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
@@ -14,11 +14,14 @@ export class UsersService {
     try {
       return await this.prisma.user.create({
         data: {
-          ...data,
+          name: data.name,
+          email: data.email,
           password: hashedPassword,
+          role: data.role ? Role[data.role] : Role.USER,
         },
       });
-    } catch (error) {
+    } catch (error: any) {
+      console.error(error);
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === 'P2002'

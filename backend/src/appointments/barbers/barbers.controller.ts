@@ -5,7 +5,7 @@ import { CreateBarberDto } from './dto/create-barber.dto';
 import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
 import { RolesGuard } from '../../common/roles/roles.guard';
 import { Roles } from '../../common/roles/roles.decorator';
-import { Role } from '../../users/enums/role.enum';
+import { Role } from '@prisma/client';
 
 @Controller('barbers')
 export class BarbersController {

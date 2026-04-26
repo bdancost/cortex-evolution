@@ -2,7 +2,8 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-  "name": "Daniel",
-  "email": "daniel@email.com",
-  "password": "123456789"
+  "name": "Admin Test",
+  "email": "dani@email.com",
+  "password": "Deny123456**",
+  "role": "ADMIN"
 }
