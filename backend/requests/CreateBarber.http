@@ -1,0 +1,7 @@
+POST http://localhost:3000/barbers
+Content-Type: application/json
+
+{
+  "name": "Barbeiro Daniel",
+  "email": "daniel.fernandes@email.com"
+}
