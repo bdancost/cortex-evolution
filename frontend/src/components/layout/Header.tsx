@@ -15,6 +15,7 @@ export function Header() {
           transition={{ duration: 0.6 }}
           className="flex items-center gap-10"
         >
+          {/* LOGO */}
           <h1 className="text-2xl md:text-3xl font-extrabold italic tracking-tight">
             CORTEX<span className="text-accent">EVO</span>
           </h1>
