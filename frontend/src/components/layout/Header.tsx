@@ -1,30 +1,9 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import { Button } from "../ui/Button";
+import { useBrazilClock } from "../../hooks/useBrazilClock";
 
 export function Header() {
-  const [time, setTime] = useState("");
-
-  useEffect(() => {
-    const updateClock = () => {
-      const now = new Date();
-
-      const formatted = now.toLocaleTimeString("pt-BR", {
-        timeZone: "America/Sao_Paulo",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      });
-
-      setTime(formatted);
-    };
-
-    updateClock();
-
-    const interval = setInterval(updateClock, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
+  const time = useBrazilClock();
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/5 backdrop-blur-xl bg-secondary/70">
