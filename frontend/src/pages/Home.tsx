@@ -1,31 +1,12 @@
 import { motion } from "framer-motion";
 import { Button } from "../components/ui/Button";
+import { Header } from "../components/layout/Header";
 
 export function Home() {
   return (
     <div className="bg-secondary text-text-soft min-h-screen selection:bg-accent selection:text-primary overflow-x-hidden">
       {/* NAVBAR */}
-      <header className="flex items-center justify-between px-6 md:px-16 py-8 backdrop-blur-md sticky top-0 z-50 border-b border-white/5">
-        <motion.h1
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-2xl md:text-3xl font-extrabold tracking-tighter italic"
-        >
-          CORTEX<span className="text-accent">EVO</span>
-        </motion.h1>
-
-        {/* Componente Button aplicado aqui (Outline) */}
-        <Button
-          variant="outline"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          whileHover={{ scale: 1.05 }}
-        >
-          Agendar
-        </Button>
-      </header>
+      <Header />
 
       {/* HERO SECTION */}
       <section className="relative flex flex-col md:flex-row items-center justify-between min-h-[90vh]">
