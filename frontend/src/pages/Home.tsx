@@ -3,6 +3,7 @@ import { HeroSection } from "../components/sections/HeroSection";
 import { ServicesSection } from "../components/sections/ServicesSection";
 import { ProblemSection } from "../components/sections/ProblemSection";
 import { BenefitsSection } from "../components/sections/BenefitsSection";
+import { TeamSection } from "../components/sections/TeamSection";
 
 export function Home() {
   return (
@@ -12,6 +13,7 @@ export function Home() {
       <ProblemSection />
       <BenefitsSection />
       <ServicesSection />
+      <TeamSection />
     </div>
   );
 }
