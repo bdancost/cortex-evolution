@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Button } from "../components/ui/Button";
 
 export function Home() {
   return (
@@ -14,20 +15,21 @@ export function Home() {
           CORTEX<span className="text-accent">EVO</span>
         </motion.h1>
 
-        <motion.button
+        {/* Componente Button aplicado aqui (Outline) */}
+        <Button
+          variant="outline"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           whileHover={{ scale: 1.05 }}
-          className="border-2 border-accent text-accent px-6 py-2 rounded-full font-bold hover:bg-accent hover:text-primary transition-all duration-300 uppercase text-xs tracking-widest"
         >
           Agendar
-        </motion.button>
+        </Button>
       </header>
 
       {/* HERO SECTION */}
       <section className="relative flex flex-col md:flex-row items-center justify-between min-h-[90vh]">
-        {/* TEXTO */}
+        {/* Texto */}
         <motion.div
           initial="hidden"
           animate="visible"
@@ -53,7 +55,7 @@ export function Home() {
             The Next Level
           </motion.span>
 
-          {/* Título */}
+          {/* Título - Original */}
           <motion.h2
             variants={{
               hidden: { opacity: 0, y: 40, scale: 0.95 },
@@ -68,7 +70,7 @@ export function Home() {
             </span>
           </motion.h2>
 
-          {/* Texto */}
+          {/* Texto - Original */}
           <motion.p
             variants={{
               hidden: { opacity: 0, y: 30 },
@@ -81,8 +83,9 @@ export function Home() {
             elevar sua presença.
           </motion.p>
 
-          {/* Botão */}
-          <motion.button
+          {/* Botão Principal */}
+          <Button
+            variant="primary"
             variants={{
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 },
@@ -92,10 +95,9 @@ export function Home() {
               scale: 1.08,
               boxShadow: "0px 0px 60px rgba(34,197,94,0.5)",
             }}
-            className="bg-accent text-primary px-12 py-5 rounded-full font-black uppercase tracking-tighter transition-all"
           >
             Agendar agora
-          </motion.button>
+          </Button>
         </motion.div>
 
         {/* IMAGEM */}
@@ -129,7 +131,7 @@ export function Home() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h3 className="text-3xl md:text-5xl font-bold mb-4">
+          <h3 className="text-3xl md:text-5xl font-bold mb-4 uppercase italic">
             Experiência Premium
           </h3>
           <p className="text-muted max-w-xl mx-auto">
@@ -138,7 +140,6 @@ export function Home() {
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8">
-          {/* CARD 1 */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -147,13 +148,14 @@ export function Home() {
             whileHover={{ y: -10 }}
             className="bg-white/5 p-8 rounded-xl backdrop-blur-md border border-white/10"
           >
-            <h4 className="text-xl font-bold mb-3">Corte Premium</h4>
+            <h4 className="text-xl font-bold mb-3 uppercase italic">
+              Corte Premium
+            </h4>
             <p className="text-muted">
               Técnicas avançadas com acabamento impecável.
             </p>
           </motion.div>
 
-          {/* CARD 2 */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -162,13 +164,14 @@ export function Home() {
             whileHover={{ y: -10 }}
             className="bg-white/5 p-8 rounded-xl backdrop-blur-md border border-white/10"
           >
-            <h4 className="text-xl font-bold mb-3">Barba & Estilo</h4>
+            <h4 className="text-xl font-bold mb-3 uppercase italic">
+              Barba & Estilo
+            </h4>
             <p className="text-muted">
               Design de barba alinhado com seu estilo.
             </p>
           </motion.div>
 
-          {/* CARD 3 */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -177,7 +180,9 @@ export function Home() {
             whileHover={{ y: -10 }}
             className="bg-white/5 p-8 rounded-xl backdrop-blur-md border border-white/10"
           >
-            <h4 className="text-xl font-bold mb-3">Experiência VIP</h4>
+            <h4 className="text-xl font-bold mb-3 uppercase italic">
+              Experiência VIP
+            </h4>
             <p className="text-muted">
               Atendimento exclusivo com conforto máximo.
             </p>
