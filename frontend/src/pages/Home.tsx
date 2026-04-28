@@ -5,6 +5,7 @@ import { ProblemSection } from "../components/sections/ProblemSection";
 import { BenefitsSection } from "../components/sections/BenefitsSection";
 import { TeamSection } from "../components/sections/TeamSection";
 import { TestimonialsSection } from "../components/sections/TestimonialsSection";
+import { FinalCTASection } from "../components/sections/FinalCTASection";
 
 export function Home() {
   return (
@@ -16,6 +17,7 @@ export function Home() {
       <ServicesSection />
       <TeamSection />
       <TestimonialsSection />
+      <FinalCTASection />
     </div>
   );
 }
