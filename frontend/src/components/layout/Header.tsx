@@ -1,10 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "../ui/Button";
-import { useBrazilClock } from "../../hooks/useBrazilClock";
 
 export function Header() {
-  const time = useBrazilClock();
-
   return (
     <header className="sticky top-0 z-50 border-b border-white/5 backdrop-blur-xl bg-secondary/70">
       <div className="max-w-7xl mx-auto px-6 md:px-16 py-5 flex items-center justify-between">
@@ -44,17 +41,6 @@ export function Header() {
           transition={{ duration: 0.6 }}
           className="flex items-center gap-4"
         >
-          {/* CLOCK */}
-          <div className="hidden md:flex flex-col text-right leading-none">
-            <span className="text-[10px] uppercase tracking-widest text-muted">
-              São Paulo - BR
-            </span>
-
-            <span className="font-mono text-accent text-sm font-bold">
-              {time}
-            </span>
-          </div>
-
           <Button variant="outline">Agendar</Button>
         </motion.div>
       </div>
