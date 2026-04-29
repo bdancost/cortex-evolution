@@ -29,6 +29,10 @@
   color: #f9fafb;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @keyframes custom-pulse {
   0%,
   100% {

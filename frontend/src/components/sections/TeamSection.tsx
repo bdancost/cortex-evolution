@@ -20,7 +20,7 @@ export function TeamSection() {
 
   const backgroundY = useTransform(scrollY, [1200, 2200], [0, -120]);
   return (
-    <section className="relative py-28 overflow-hidden">
+    <section id="team" className="relative py-28 overflow-hidden">
       {/* BACKGROUND IMAGE */}
       <motion.div style={{ y: backgroundY }} className="absolute inset-0">
         <img

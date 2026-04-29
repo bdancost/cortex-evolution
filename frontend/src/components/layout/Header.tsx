@@ -25,28 +25,28 @@ export function Header() {
           {/* DESKTOP NAV */}
           <nav className="hidden md:flex items-center gap-8">
             <a
-              href="#"
+              href="#home"
               className="text-sm text-muted hover:text-white transition"
             >
               Início
             </a>
 
             <a
-              href="#"
+              href="#services"
               className="text-sm text-muted hover:text-white transition"
             >
               Serviços
             </a>
 
             <a
-              href="#"
+              href="#team"
               className="text-sm text-muted hover:text-white transition"
             >
               Equipe
             </a>
 
             <a
-              href="#"
+              href="#testimonials"
               className="text-sm text-muted hover:text-white transition"
             >
               Depoimentos
@@ -105,19 +105,19 @@ export function Header() {
               </div>
 
               <nav className="flex flex-col gap-6 text-lg">
-                <a href="#" onClick={toggleMenu}>
+                <a href="#home" onClick={toggleMenu}>
                   Início
                 </a>
 
-                <a href="#" onClick={toggleMenu}>
+                <a href="#services" onClick={toggleMenu}>
                   Serviços
                 </a>
 
-                <a href="#" onClick={toggleMenu}>
+                <a href="#team" onClick={toggleMenu}>
                   Equipe
                 </a>
 
-                <a href="#" onClick={toggleMenu}>
+                <a href="#testimonials" onClick={toggleMenu}>
                   Depoimentos
                 </a>
               </nav>

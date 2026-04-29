@@ -20,7 +20,7 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section className="px-6 md:px-16 py-28">
+    <section id="services" className="px-6 md:px-16 py-28">
       {/* HEADER */}
       <motion.div
         initial={{ opacity: 0, y: 35 }}

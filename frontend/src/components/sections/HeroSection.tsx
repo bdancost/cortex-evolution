@@ -15,7 +15,10 @@ export function HeroSection() {
   const opacity = useTransform(scrollY, [0, 400], [1, 0.4]);
 
   return (
-    <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-between overflow-hidden">
+    <section
+      id="home"
+      className="relative min-h-screen flex flex-col md:flex-row items-center justify-between overflow-hidden"
+    >
       {/* TEXT */}
       <motion.div
         style={{ y: textY, opacity }}

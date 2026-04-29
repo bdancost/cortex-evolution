@@ -22,7 +22,7 @@ export function TestimonialsSection() {
   const backgroundY = useTransform(scrollY, [2200, 3200], [0, -120]);
 
   return (
-    <section className="relative py-28 overflow-hidden">
+    <section id="testimonials" className="relative py-28 overflow-hidden">
       {/* BACKGROUND */}
       <motion.div style={{ y: backgroundY }} className="absolute inset-0">
         <img
