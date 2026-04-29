@@ -52,8 +52,8 @@ export function HeroSection() {
           transition={{ duration: 1, delay: 0.2 }}
           className="mt-8 text-lg md:text-xl text-muted max-w-xl mx-auto md:mx-0 leading-relaxed"
         >
-          Uma experiência premium criada para homens que valorizam presença,
-          imagem e precisão em cada detalhe.
+          A técnica encontra o estilo. Reserve seu horário em segundos e viva
+          uma experiência premium.
         </motion.p>
 
         <motion.div
