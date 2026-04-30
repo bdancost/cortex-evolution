@@ -77,6 +77,8 @@ export function HeroSection() {
           src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?q=80&w=2070"
           alt="Barber Premium"
           className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          fetchPriority="high"
         />
 
         <div className="absolute inset-0 bg-gradient-to-l from-transparent via-black/10 to-secondary" />

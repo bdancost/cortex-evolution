@@ -29,6 +29,8 @@ export function TestimonialsSection() {
           src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1800&q=80"
           alt="Luxury Barber Interior"
           className="w-full h-full object-cover scale-110"
+          loading="lazy"
+          decoding="async"
         />
 
         <div className="absolute inset-0 bg-black/75" />

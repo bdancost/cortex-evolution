@@ -9,7 +9,7 @@ export function FinalCTASection() {
 
       {/* GLOW SHAPES */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-white/20 blur-[120px] rounded-full" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-black/10 blur-[140px] rounded-full" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-black/10 blur-[90px] rounded-full" />
 
       {/* CONTENT */}
       <div className="relative z-10 px-6 md:px-16 text-center max-w-5xl mx-auto">

@@ -10,7 +10,7 @@ export function ContactLocationSection() {
     >
       {/* BACKGROUND GLOW */}
       <div className="absolute top-0 left-0 w-80 h-80 bg-accent/10 blur-[120px] rounded-full" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-500/10 blur-[140px] rounded-full" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-500/10 blur-[90px] rounded-full" />
 
       <div className="relative z-10 max-w-7xl mx-auto">
         {/* HEADER */}

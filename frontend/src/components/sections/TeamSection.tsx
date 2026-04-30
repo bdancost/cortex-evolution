@@ -27,6 +27,8 @@ export function TeamSection() {
           src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1600&q=80"
           alt="Barber Team"
           className="w-full h-full object-cover"
+          loading="lazy"
+          decoding="async"
         />
 
         {/* Overlay escuro suave */}
