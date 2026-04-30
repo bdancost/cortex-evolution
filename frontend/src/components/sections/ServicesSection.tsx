@@ -20,7 +20,7 @@ const services = [
 
 export function ServicesSection() {
   return (
-    <section id="services" className="px-6 md:px-16 py-28">
+    <section id="services" className="px-4 sm:px-6 md:px-16 py-24 md:py-28">
       {/* HEADER */}
       <motion.div
         initial={{ opacity: 0, y: 35 }}
@@ -33,7 +33,7 @@ export function ServicesSection() {
           Premium Experience
         </span>
 
-        <h3 className="text-4xl md:text-6xl font-black uppercase italic leading-tight">
+        <h3 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase italic leading-tight">
           Serviços criados
           <br />
           para impactar.
@@ -45,7 +45,7 @@ export function ServicesSection() {
       </motion.div>
 
       {/* CARDS */}
-      <div className="grid md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {services.map((service, index) => (
           <motion.div
             key={service.title}

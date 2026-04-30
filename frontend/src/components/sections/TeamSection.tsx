@@ -50,7 +50,7 @@ export function TeamSection() {
             Nossa Equipe
           </span>
 
-          <h2 className="text-4xl md:text-6xl font-black uppercase italic leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase italic leading-tight">
             Especialistas em
             <br />
             transformar estilos.
@@ -62,7 +62,7 @@ export function TeamSection() {
         </motion.div>
 
         {/* CARDS */}
-        <div className="grid md:grid-cols-3 gap-8 mt-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-20">
           {team.map((member, index) => (
             <motion.div
               key={member.name}

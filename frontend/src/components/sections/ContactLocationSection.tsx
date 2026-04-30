@@ -4,7 +4,10 @@ import { FaInstagram, FaFacebook } from "react-icons/fa";
 
 export function ContactLocationSection() {
   return (
-    <section className="relative py-28 px-6 md:px-16 overflow-hidden bg-zinc-950">
+    <section
+      id="contact"
+      className="relative px-4 sm:px-6 md:px-16 py-24 md:py-28 overflow-hidden bg-zinc-950"
+    >
       {/* BACKGROUND GLOW */}
       <div className="absolute top-0 left-0 w-80 h-80 bg-accent/10 blur-[120px] rounded-full" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-emerald-500/10 blur-[140px] rounded-full" />
@@ -22,7 +25,7 @@ export function ContactLocationSection() {
             Localização & Contato
           </span>
 
-          <h2 className="text-4xl md:text-6xl font-black uppercase italic leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase italic leading-tight">
             Venha viver a
             <br />
             experiência premium.

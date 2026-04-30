@@ -27,7 +27,7 @@ const benefits = [
 
 export function BenefitsSection() {
   return (
-    <section className="px-6 md:px-16 py-28">
+    <section className="px-4 sm:px-6 md:px-16 py-24 md:py-28">
       {/* HEADER */}
       <motion.div
         initial={{ opacity: 0, y: 35 }}
@@ -40,7 +40,7 @@ export function BenefitsSection() {
           Benefícios
         </span>
 
-        <h2 className="text-4xl md:text-6xl font-black uppercase italic leading-tight">
+        <h2 className="text-3xl sm:text-3xl sm:text-4xl md:text-6xl font-black uppercase italic leading-tight">
           O jeito inteligente
           <br />
           de cuidar do visual.

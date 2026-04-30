@@ -50,7 +50,7 @@ export function TestimonialsSection() {
             Clientes Reais
           </span>
 
-          <h2 className="text-4xl md:text-6xl font-black uppercase italic leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black uppercase italic leading-tight">
             Quem viveu
             <br />
             recomenda.
@@ -62,7 +62,7 @@ export function TestimonialsSection() {
         </motion.div>
 
         {/* GRID */}
-        <div className="grid md:grid-cols-3 gap-8 mt-20 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-20 max-w-7xl mx-auto">
           {testimonials.map((item, index) => (
             <motion.div
               key={item.name}

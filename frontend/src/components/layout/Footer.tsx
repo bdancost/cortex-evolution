@@ -5,15 +5,15 @@ export function Footer() {
   const time = useBrazilClock();
 
   return (
-    <footer className="px-6 md:px-16 py-20 border-t border-white/10 bg-black">
-      <div className="grid md:grid-cols-3 gap-12">
+    <footer className="px-4 sm:px-6 md:px-16 py-24 md:py-28 border-t border-white/10 bg-black">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
         {/* BRAND */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-black italic">
+          <h2 className="text-3xl  font-black italic">
             CORTEX<span className="text-accent">EVO</span>
           </h2>
 
@@ -32,10 +32,18 @@ export function Footer() {
           <h3 className="font-bold uppercase mb-5">Navegação</h3>
 
           <ul className="space-y-3 text-muted">
-            <li>Início</li>
-            <li>Serviços</li>
-            <li>Equipe</li>
-            <li>Contato</li>
+            <a href="">
+              <li>Início</li>
+            </a>
+            <a href="#services">
+              <li>Serviços</li>
+            </a>
+            <a href="#team">
+              <li>Equipe</li>
+            </a>
+            <a href="#contact">
+              <li>Contato</li>
+            </a>
           </ul>
         </motion.div>
 

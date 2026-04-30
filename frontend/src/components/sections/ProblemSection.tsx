@@ -9,7 +9,7 @@ const problems = [
 
 export function ProblemSection() {
   return (
-    <section className="px-6 md:px-16 py-28 bg-black/20">
+    <section className="px-4 sm:px-6 md:px-16 py-24 md:py-28 bg-black/20">
       {/* HEADER */}
       <motion.div
         initial={{ opacity: 0, y: 35 }}
