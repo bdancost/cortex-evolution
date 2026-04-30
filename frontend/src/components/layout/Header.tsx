@@ -58,7 +58,13 @@ export function Header() {
           {/* MOBILE BUTTON */}
           <button
             onClick={toggleMenu}
-            className="md:hidden flex flex-col gap-1.5"
+            className="
+              md:hidden
+              flex flex-col gap-1.5
+              p-2 rounded-xl
+              active:scale-95
+              transition
+              "
             aria-label="Abrir menu"
           >
             <span className="w-6 h-0.5 bg-white rounded-full" />

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  /* Cores e Variáveis Customizadas */
   --color-primary: #0f172a;
   --color-secondary: #111827;
   --color-accent: #22c55e;
@@ -8,40 +9,56 @@
   --color-muted: #6b7280;
   --color-text-soft: #f9fafb;
 
-  @layer utilities {
-    .mask-fade-right {
-      mask-image: linear-gradient(
-        to right,
-        transparent,
-        black 15%,
-        black 85%,
-        transparent
-      );
+  /* Keyframes agora dentro do @theme para o Tailwind reconhecer */
+  @keyframes custom-pulse {
+    0%,
+    100% {
+      opacity: 1;
     }
-    .mask-fade-bottom {
-      mask-image: linear-gradient(to bottom, black 70%, transparent);
+    50% {
+      opacity: 0.8;
     }
   }
 }
 
+/* Utilitários Customizados (FORA do @theme) */
+@layer utilities {
+  .mask-fade-right {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+  }
+
+  .mask-fade-bottom {
+    mask-image: linear-gradient(to bottom, black 70%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent);
+  }
+
+  .animate-soft-pulse {
+    animation: custom-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+/* Estilos Globais */
 :root {
   background-color: #111827;
   color: #f9fafb;
 }
 
-html {
+html,
+body {
   scroll-behavior: smooth;
-}
-
-@keyframes custom-pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-.animate-soft-pulse {
-  animation: custom-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior-y: none;
 }
