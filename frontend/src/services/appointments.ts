@@ -1,8 +1,8 @@
 import { api } from "./api";
 
-export async function getAvailableTimes(date: string) {
+export async function getAvailableTimes(date: string, barberId: string) {
   const response = await api.get("/appointments/available", {
-    params: { date },
+    params: { date, barberId },
   });
 
   return response.data;

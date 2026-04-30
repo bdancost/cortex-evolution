@@ -7,6 +7,7 @@ import { TeamSection } from "../components/sections/TeamSection";
 import { TestimonialsSection } from "../components/sections/TestimonialsSection";
 import { FinalCTASection } from "../components/sections/FinalCTASection";
 import { ContactLocationSection } from "../components/sections/ContactLocationSection";
+import { BookingSection } from "../components/sections/BookingSection";
 import { Footer } from "../components/layout/Footer";
 
 export function Home() {
@@ -21,6 +22,7 @@ export function Home() {
       <TestimonialsSection />
       <FinalCTASection />
       <ContactLocationSection />
+      <BookingSection />
       <Footer />
     </div>
   );
