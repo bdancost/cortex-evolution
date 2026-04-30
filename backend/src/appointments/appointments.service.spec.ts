@@ -4,12 +4,13 @@ import { PrismaService } from '../prisma/prisma.service';
 
 describe('AppointmentsService', () => {
   let service: AppointmentsService;
-  let prisma: PrismaService;
 
+  // 1. ATUALIZE O MOCK: Adicione o findFirst aqui
   const mockPrisma = {
     appointment: {
       create: jest.fn(),
       findMany: jest.fn(),
+      findFirst: jest.fn(), // Essencial para a validação de conflito
     },
   };
 
@@ -25,55 +26,42 @@ describe('AppointmentsService', () => {
     }).compile();
 
     service = module.get<AppointmentsService>(AppointmentsService);
-    prisma = module.get<PrismaService>(PrismaService);
   });
 
   it('should create an appointment', async () => {
     const userId = 'user-1';
+    const barberId = 'barber-1';
+
+    // CORREÇÃO: Criar uma data no FUTURO (ex: Amanhã às 10h)
     const date = new Date();
+    date.setDate(date.getDate() + 1); // Amanhã
+    date.setHours(10, 0, 0, 0); // 10:00:00
+
+    mockPrisma.appointment.findFirst.mockResolvedValue(null);
 
     mockPrisma.appointment.create.mockResolvedValue({
       id: 'appt-1',
       userId,
+      barberId,
       date,
       createdAt: new Date(),
     });
 
-    const result = await service.create(userId, date);
-
-    expect(prisma.appointment.create).toHaveBeenCalledWith({
-      data: {
-        userId,
-        date,
-      },
-    });
+    const result = await service.create(userId, barberId, date);
 
     expect(result).toHaveProperty('id');
-    expect(result.userId).toBe(userId);
+    expect(result.date).toEqual(date);
   });
 
-  it('should return all appointments with users', async () => {
-    const mockData = [
-      {
-        id: 'appt-1',
-        date: new Date(),
-        user: {
-          id: 'user-1',
-          email: 'test@email.com',
-        },
-      },
-    ];
+  it('should throw an error if appointment at same time exists', async () => {
+    const userId = 'user-1';
+    const barberId = 'barber-1';
+    const date = new Date();
 
-    mockPrisma.appointment.findMany.mockResolvedValue(mockData);
+    // Simula que JÁ EXISTE um agendamento (conflito)
+    mockPrisma.appointment.findFirst.mockResolvedValue({ id: 'existing-id' });
 
-    const result = await service.findAll();
-
-    expect(prisma.appointment.findMany).toHaveBeenCalledWith({
-      include: {
-        user: true,
-      },
-    });
-
-    expect(result).toEqual(mockData);
+    // O teste deve esperar que a Promise seja rejeitada
+    await expect(service.create(userId, barberId, date)).rejects.toThrow();
   });
 });

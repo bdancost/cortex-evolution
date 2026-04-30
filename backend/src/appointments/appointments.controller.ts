@@ -36,6 +36,7 @@ export class AppointmentsController {
   ) {
     return this.service.getAvailableSlots(new Date(date), barberId);
   }
+  @Get()
   findAll() {
     return this.service.findAll();
   }

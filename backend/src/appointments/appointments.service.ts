@@ -29,6 +29,7 @@ export class AppointmentsService {
     // ✅ validação de conflito
     const existingAppointment = await this.prisma.appointment.findFirst({
       where: {
+        barberId,
         date: roundedDate,
       },
     });
