@@ -62,7 +62,16 @@ export function HeroSection() {
           transition={{ duration: 1.1, delay: 0.3 }}
           className="mt-10 flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
         >
-          <Button variant="primary">Agendar agora</Button>
+          <Button
+            variant="primary"
+            onClick={() =>
+              document
+                .getElementById("reserve")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+          >
+            Agendar agora
+          </Button>
 
           <Button variant="outline">Conhecer espaço</Button>
         </motion.div>

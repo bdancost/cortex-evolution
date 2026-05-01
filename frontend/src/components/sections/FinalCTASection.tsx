@@ -53,7 +53,15 @@ export function FinalCTASection() {
           viewport={{ once: true }}
           className="mt-12 flex justify-center"
         >
-          <Button variant="dark" className="px-12 py-5 text-lg shadow-2xl">
+          <Button
+            variant="dark"
+            className="px-12 py-5 text-lg shadow-2xl"
+            onClick={() =>
+              document
+                .getElementById("reserve")
+                ?.scrollIntoView({ behavior: "smooth" })
+            }
+          >
             Agendar Agora
           </Button>
         </motion.div>

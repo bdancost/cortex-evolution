@@ -129,7 +129,15 @@ export function Header() {
               </nav>
 
               <div className="mt-10">
-                <Button variant="primary" className="w-full">
+                <Button
+                  variant="primary"
+                  className="w-full"
+                  onClick={() =>
+                    document
+                      .getElementById("reserve")
+                      ?.scrollIntoView({ behavior: "smooth" })
+                  }
+                >
                   Agendar Agora
                 </Button>
               </div>
