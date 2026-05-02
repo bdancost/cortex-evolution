@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { getAvailableSlots } from "../../services/appointments";
 import { createPublicAppointment } from "../../services/publicAppointments";
+import DatePicker from "react-datepicker";
 
 type Barber = {
   id: string;
@@ -205,15 +206,71 @@ export function BookingSection() {
           <div className="mb-10">
             <p className="font-bold mb-4 text-lg">Escolha a data</p>
 
-            <input
-              type="date"
-              value={date}
-              onChange={(e) => {
-                setDate(e.target.value);
-                setSelectedSlot("");
-              }}
-              className="w-full p-4 rounded-2xl bg-white/5 border border-white/10 outline-none focus:border-accent"
-            />
+            <div className="relative">
+              <DatePicker
+                selected={date ? new Date(date) : null}
+                onChange={(selectedDate: Date | null) => {
+                  if (!selectedDate) return;
+
+                  const localDate = selectedDate.toLocaleDateString("en-CA");
+
+                  setDate(localDate);
+                  setSelectedSlot("");
+                }}
+                minDate={new Date()}
+                locale="pt-BR"
+                dateFormat="dd/MM/yyyy"
+                placeholderText="Selecione sua data"
+                showPopperArrow={false}
+                calendarStartDay={0}
+                formatWeekDay={(nameOfDay) => nameOfDay.substring(0, 3)}
+                wrapperClassName="w-full"
+                popperClassName="z-50"
+                className="
+        w-full
+        h-16
+        px-5
+        pr-14
+        rounded-2xl
+        bg-white/5
+        border
+        border-white/10
+        text-white
+        placeholder:text-zinc-500
+        outline-none
+        transition-all
+        duration-300
+        hover:border-accent/60
+        focus:border-accent
+        focus:ring-2
+        focus:ring-accent/30
+        cursor-pointer
+      "
+                calendarClassName="premium-calendar"
+                dayClassName={(d) => {
+                  const isToday =
+                    d.toDateString() === new Date().toDateString();
+
+                  return `
+          rounded-lg
+          transition-all
+          hover:bg-accent
+          hover:text-black
+          ${isToday ? "text-accent font-bold" : ""}
+        `;
+                }}
+                popperPlacement="bottom-start"
+              />
+
+              {/* ICON */}
+              <div className="absolute right-5 top-1/2 -translate-y-1/2 text-accent text-xl pointer-events-none">
+                📅
+              </div>
+            </div>
+
+            <p className="text-sm text-zinc-500 mt-3">
+              Escolha o melhor dia para seu atendimento premium.
+            </p>
           </div>
 
           {/* SLOTS */}
