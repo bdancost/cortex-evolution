@@ -1,3 +1,7 @@
+/*
+// LEGACY PRIVATE FLOW:
+// Internal authenticated booking route.
+// Public website bookings will use /public/appointments.
 import {
   Controller,
   Post,
@@ -41,3 +45,4 @@ export class AppointmentsController {
     return this.service.findAll();
   }
 }
+*/

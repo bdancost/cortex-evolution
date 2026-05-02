@@ -1,3 +1,7 @@
+/*
+
+// Existing authenticated booking flow.
+// Preserved for future admin panel usage.
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { Prisma } from '@prisma/client';
@@ -122,3 +126,4 @@ export class AppointmentsService {
     });
   }
 }
+*/
