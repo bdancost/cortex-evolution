@@ -9,7 +9,6 @@ import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './common/roles/roles.guard';
 import { PublicAppointmentsModule } from './public-appointments/public-appointments.module';
-
 @Module({
   imports: [
     UsersModule,

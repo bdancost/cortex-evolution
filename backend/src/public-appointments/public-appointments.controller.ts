@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, Query } from '@nestjs/common';
 
 import { PublicAppointmentsService } from './public-appointments.service';
 
@@ -19,5 +19,12 @@ export class PublicAppointmentsController {
       body.barberId,
       new Date(body.date),
     );
+  }
+  @Get('available')
+  getAvailable(
+    @Query('date') date: string,
+    @Query('barberId') barberId: string,
+  ) {
+    return this.service.getAvailableSlots(new Date(date), barberId);
   }
 }
