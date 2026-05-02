@@ -23,13 +23,21 @@ model User {
 }
 
 model Appointment {
-  id        String   @id @default(uuid())
-  date      DateTime @unique
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  createdAt DateTime @default(now())
+  id   String   @id @default(uuid())
+  date DateTime @unique
+
+  // Campos para usuários não autenticados (opcionais)
+  guestName  String?
+  guestEmail String?
+  guestPhone String?
+
+  // userId agora é opcional (String?) para permitir agendamentos públicos
+  userId String?
+  user   User?   @relation(fields: [userId], references: [id])
+
   barber    Barber   @relation(fields: [barberId], references: [id])
   barberId  String
+  createdAt DateTime @default(now())
 }
 
 model Barber {

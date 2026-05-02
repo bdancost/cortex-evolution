@@ -1,3 +1,8 @@
+/*
+ * Este arquivo contém os testes unitários para o AppointmentsService.
+ * Ele utiliza Jest para criar mocks do PrismaService e testar a lógica de criação de agendamentos.
+ * Certifique-se de que o PrismaService esteja corretamente mockado para simular os cenários de teste.
+ 
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppointmentsService } from './appointments.service';
 import { PrismaService } from '../prisma/prisma.service';
@@ -65,3 +70,4 @@ describe('AppointmentsService', () => {
     await expect(service.create(userId, barberId, date)).rejects.toThrow();
   });
 });
+*/

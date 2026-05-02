@@ -1,3 +1,4 @@
+/*
 import {
   IsNotEmpty,
   IsUUID,
@@ -23,3 +24,4 @@ export class CreateAppointmentDto {
   @MinDate(new Date())
   date!: Date;
 }
+*/

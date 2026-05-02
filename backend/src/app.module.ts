@@ -4,11 +4,11 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
-import { AppointmentsModule } from './appointments/appointments.module';
 import { BarbersModule } from './appointments/barbers/barbers.module';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './common/roles/roles.guard';
+import { PublicAppointmentsModule } from './public-appointments/public-appointments.module';
 
 @Module({
   imports: [
@@ -23,8 +23,8 @@ import { RolesGuard } from './common/roles/roles.guard';
       },
     ]),
     AuthModule,
-    AppointmentsModule,
     BarbersModule,
+    PublicAppointmentsModule,
   ],
   controllers: [AppController],
   providers: [
