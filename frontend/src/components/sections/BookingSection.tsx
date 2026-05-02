@@ -1,8 +1,7 @@
-// src/components/sections/BookingSection.tsx
-
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { getAvailableSlots } from "../../services/appointments";
+import { createPublicAppointment } from "../../services/publicAppointments";
 
 type Barber = {
   id: string;
@@ -40,8 +39,15 @@ export function BookingSection() {
   const [date, setDate] = useState<string>("");
   const [slots, setSlots] = useState<string[]>([]);
   const [selectedSlot, setSelectedSlot] = useState<string>("");
+
   const [loading, setLoading] = useState<boolean>(false);
+  const [submitting, setSubmitting] = useState<boolean>(false);
+
   const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
+
+  const [guestName, setGuestName] = useState<string>("");
+  const [guestPhone, setGuestPhone] = useState<string>("");
 
   useEffect(() => {
     if (!date) return;
@@ -64,6 +70,39 @@ export function BookingSection() {
 
     loadSlots();
   }, [date, selectedBarber]);
+
+  async function handleBooking() {
+    try {
+      if (!date || !selectedSlot) return;
+
+      setSubmitting(true);
+      setError("");
+      setSuccess("");
+
+      const isoDate = new Date(`${date}T${selectedSlot}:00`).toISOString();
+
+      await createPublicAppointment({
+        guestName,
+        guestPhone,
+        barberId: selectedBarber,
+        date: isoDate,
+      });
+
+      setSuccess("Reserva confirmada com sucesso!");
+
+      setGuestName("");
+      setGuestPhone("");
+      setSelectedSlot("");
+
+      const refreshedSlots = await getAvailableSlots(date, selectedBarber);
+
+      setSlots(refreshedSlots);
+    } catch {
+      setError("Não foi possível reservar.");
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   const barber = barbers.find((item) => item.id === selectedBarber);
 
@@ -214,6 +253,25 @@ export function BookingSection() {
             </div>
           </div>
 
+          {/* NEW STATES ONLY */}
+          <div className="mb-8 grid gap-4">
+            <input
+              type="text"
+              placeholder="Seu nome"
+              value={guestName}
+              onChange={(e) => setGuestName(e.target.value)}
+              className="w-full p-4 rounded-2xl bg-white/5 border border-white/10 outline-none focus:border-accent"
+            />
+
+            <input
+              type="text"
+              placeholder="WhatsApp"
+              value={guestPhone}
+              onChange={(e) => setGuestPhone(e.target.value)}
+              className="w-full p-4 rounded-2xl bg-white/5 border border-white/10 outline-none focus:border-accent"
+            />
+          </div>
+
           {/* SUMMARY */}
           <div className="rounded-3xl border border-white/10 bg-white/5 p-6 mb-8">
             <p className="text-xl font-bold mb-5">Resumo da Reserva</p>
@@ -247,12 +305,21 @@ export function BookingSection() {
             </a>
 
             <button
-              className="border border-white/10 rounded-2xl py-4 font-bold hover:bg-white/5 transition-all"
-              disabled={!date || !selectedSlot}
+              onClick={handleBooking}
+              disabled={
+                !date ||
+                !selectedSlot ||
+                !guestName ||
+                !guestPhone ||
+                submitting
+              }
+              className="border border-white/10 rounded-2xl py-4 font-bold hover:bg-white/5 transition-all disabled:opacity-50"
             >
-              Reserva Online
+              {submitting ? "Reservando..." : "Reserva Online"}
             </button>
           </div>
+
+          {success && <p className="text-green-400 mt-5">{success}</p>}
 
           {/* SOCIAL PROOF */}
           <p className="text-zinc-500 text-sm mt-6">
