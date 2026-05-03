@@ -4,46 +4,40 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-}
-
-enum Role {
-  USER
-  ADMIN
+  url      = env("DATABASE_URL")
 }
 
 model User {
   id           String        @id @default(uuid())
   name         String
   email        String        @unique
-  password     String
   createdAt    DateTime      @default(now())
+  password     String
+  role         Role          @default(USER)
   appointments Appointment[]
-
-  role Role @default(USER)
 }
 
 model Appointment {
-  id   String   @id @default(uuid())
-  date DateTime @unique
-
-  // Campos para usuários não autenticados (opcionais)
-  guestName  String?
+  id         String   @id @default(uuid())
+  date       DateTime @unique
+  userId     String?
+  createdAt  DateTime @default(now())
+  barberId   String
   guestEmail String?
+  guestName  String?
   guestPhone String?
-
-  // userId agora é opcional (String?) para permitir agendamentos públicos
-  userId String?
-  user   User?   @relation(fields: [userId], references: [id])
-
-  barber    Barber   @relation(fields: [barberId], references: [id])
-  barberId  String
-  createdAt DateTime @default(now())
+  barber     Barber   @relation(fields: [barberId], references: [id])
+  user       User?    @relation(fields: [userId], references: [id])
 }
 
 model Barber {
-  id        String   @id @default(uuid())
-  name      String
-  createdAt DateTime @default(now())
-
+  id           String        @id @default(uuid())
+  name         String
+  createdAt    DateTime      @default(now())
   appointments Appointment[]
+}
+
+enum Role {
+  USER
+  ADMIN
 }
