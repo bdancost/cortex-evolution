@@ -8,7 +8,7 @@ type CreateBookingPayload = {
 };
 
 export async function createPublicAppointment(payload: CreateBookingPayload) {
-  const response = await api.post("/public/appointments/available", payload);
+  const response = await api.post("/public/appointments", payload);
 
   return response.data.data;
 }

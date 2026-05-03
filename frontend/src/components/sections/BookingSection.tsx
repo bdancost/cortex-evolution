@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { getAvailableSlots } from "../../services/appointments";
 import { createPublicAppointment } from "../../services/publicAppointments";
 import DatePicker from "react-datepicker";
+import { ptBR } from "date-fns/locale";
 
 type Barber = {
   id: string;
@@ -42,7 +43,7 @@ export function BookingSection() {
   const [selectedSlot, setSelectedSlot] = useState<string>("");
 
   const [loading, setLoading] = useState<boolean>(false);
-  const [submitting, setSubmitting] = useState<boolean>(false);
+  const [loadingBooking, setLoadingBooking] = useState<boolean>(false);
 
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
@@ -76,7 +77,7 @@ export function BookingSection() {
     try {
       if (!date || !selectedSlot) return;
 
-      setSubmitting(true);
+      setLoadingBooking(true);
       setError("");
       setSuccess("");
 
@@ -101,7 +102,7 @@ export function BookingSection() {
     } catch {
       setError("Não foi possível reservar.");
     } finally {
-      setSubmitting(false);
+      setLoadingBooking(false);
     }
   }
 
@@ -218,7 +219,7 @@ export function BookingSection() {
                   setSelectedSlot("");
                 }}
                 minDate={new Date()}
-                locale="pt-BR"
+                locale={ptBR}
                 dateFormat="dd/MM/yyyy"
                 placeholderText="Selecione sua data"
                 showPopperArrow={false}
@@ -368,11 +369,21 @@ export function BookingSection() {
                 !selectedSlot ||
                 !guestName ||
                 !guestPhone ||
-                submitting
+                loadingBooking
               }
-              className="border border-white/10 rounded-2xl py-4 font-bold hover:bg-white/5 transition-all disabled:opacity-50"
+              className="
+    border
+    border-white/10
+    rounded-2xl
+    py-4
+    font-bold
+    hover:bg-white/5
+    transition-all
+    disabled:opacity-50
+    disabled:cursor-not-allowed
+  "
             >
-              {submitting ? "Reservando..." : "Reserva Online"}
+              {loadingBooking ? "Reservando..." : "Reserva Online"}
             </button>
           </div>
 
