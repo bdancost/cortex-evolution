@@ -14,21 +14,21 @@ type Barber = {
 
 const barbers: Barber[] = [
   {
-    id: "1",
+    id: "53313a33-7919-40b1-aa5d-4b4c3c43018e",
     name: "Rafael Costa",
     role: "Fade Expert",
     image:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400",
   },
   {
-    id: "2",
+    id: "81963bfb-6863-453e-a223-708146f10929",
     name: "Lucas Mendes",
     role: "Beard Master",
     image:
       "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400",
   },
   {
-    id: "3",
+    id: "936361cf-e251-4c13-97ac-22027d9e7a50",
     name: "Victor Alves",
     role: "Premium Stylist",
     image:
