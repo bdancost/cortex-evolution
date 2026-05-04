@@ -1,4 +1,4 @@
-# 💈 Barbershop Booking System
+# 💈 Cortes Evolution
 
 <p align="center">
   <img src="https://img.shields.io/badge/Frontend-React-blue?style=for-the-badge&logo=react" />
@@ -163,4 +163,4 @@ Este projeto demonstra a integração real entre Frontend, Backend e Banco de Da
 
 ---
 
-<p align="center">Made with 💻, ☕ and a bit of chaos.</p>
+<p align="center">Developed by Daniel Fernandes.</p>
