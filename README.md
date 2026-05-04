@@ -97,7 +97,9 @@ model Appointment {
 }
 ```
 
+```
 ---
+```
 
 ## 🧠 Regras de Negócio & Lógica
 
@@ -106,7 +108,9 @@ model Appointment {
 - **Prevenção de Conflitos:** Validação de slot ocupado para evitar double-booking.
 - **UX Premium:** Feedback visual de loading, erro e sucesso em tempo real.
 
+```
 ---
+```
 
 ## ⚠️ Desafios Técnicos Solucionados
 
@@ -117,7 +121,9 @@ model Appointment {
 | **P1012 (Schema Validation)**  | Ajuste do `datasource` para leitura via `env("DATABASE_URL")` e bypass do config moderno. |
 | **Slots.map error**            | Garantia de tipagem e fallback de array vazio no retorno da API.                          |
 
+```
 ---
+```
 
 ## 🚀 Como Rodar
 
@@ -128,6 +134,7 @@ model Appointment {
    ```
 
 2. **Backend:**
+
    ```bash
    cd backend
    npm install
