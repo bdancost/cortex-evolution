@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "../ui/Button";
+//import { Button } from "../ui/Button";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,33 +26,31 @@ export function Header() {
           <nav className="hidden md:flex items-center gap-8">
             <a
               href="#home"
-              className="text-sm text-muted hover:text-white transition"
+              className="text-md text-muted hover:text-white transition"
             >
               Início
             </a>
 
             <a
               href="#services"
-              className="text-sm text-muted hover:text-white transition"
+              className="text-md text-muted hover:text-white transition"
             >
               Serviços
             </a>
 
             <a
               href="#team"
-              className="text-sm text-muted hover:text-white transition"
+              className="text-md text-muted hover:text-white transition"
             >
               Equipe
             </a>
 
             <a
               href="#testimonials"
-              className="text-sm text-muted hover:text-white transition"
+              className="text-md text-muted hover:text-white transition"
             >
               Depoimentos
             </a>
-
-            <Button variant="outline">Agendar</Button>
           </nav>
 
           {/* MOBILE BUTTON */}
@@ -128,19 +126,7 @@ export function Header() {
                 </a>
               </nav>
 
-              <div className="mt-10">
-                <Button
-                  variant="primary"
-                  className="w-full"
-                  onClick={() =>
-                    document
-                      .getElementById("reserve")
-                      ?.scrollIntoView({ behavior: "smooth" })
-                  }
-                >
-                  Agendar Agora
-                </Button>
-              </div>
+              <div className="mt-10"></div>
             </motion.aside>
           </>
         )}
