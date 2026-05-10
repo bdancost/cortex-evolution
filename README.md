@@ -62,8 +62,7 @@ model Appointment {
 }
 ```
 
-<<<<<<< HEAD
----
+## <<<<<<< HEAD
 
 ## 🔌 API Endpoints
 
@@ -73,10 +72,10 @@ model Appointment {
 
 **Query Params:**
 
-| Param      | Tipo   | Descrição              |
-| :--------- | :----- | :--------------------- |
-| `date`     | string | Formato: `YYYY-MM-DD`  |
-| `barberId` | string | UUID do barbeiro       |
+| Param      | Tipo   | Descrição             |
+| :--------- | :----- | :-------------------- |
+| `date`     | string | Formato: `YYYY-MM-DD` |
+| `barberId` | string | UUID do barbeiro      |
 
 **Response:**
 
@@ -94,8 +93,8 @@ model Appointment {
 =======
 ## ✔️ Highlights
 
-Supports authenticated and guest users  
-Prevents double booking  
+Supports authenticated and guest users
+Prevents double booking
 Clean relational structure
 
 ---
@@ -107,7 +106,7 @@ Clean relational structure
 GET /public/appointments/available
 
 **Query:**
-date=YYYY-MM-DD  
+date=YYYY-MM-DD
 barberId=UUID
 
 **Response:**
@@ -143,12 +142,12 @@ POST /public/appointments
 
 ## ⚠️ Desafios Técnicos Solucionados
 
-| Problema                       | Solução Implementada                                                                      |
-| :----------------------------- | :---------------------------------------------------------------------------------------- |
+| Problema                       | Solução Implementada                                                                     |
+| :----------------------------- | :--------------------------------------------------------------------------------------- |
 | **ERR_STREAM_PREMATURE_CLOSE** | Downgrade estratégico para Prisma 5.10.0 e Node 20 para estabilidade em Mac Silicon      |
-| **ERR_UNSAFE_PORT (6666)**     | Migração para a porta 7777 para evitar bloqueios nativos do Chrome/Safari                 |
+| **ERR_UNSAFE_PORT (6666)**     | Migração para a porta 7777 para evitar bloqueios nativos do Chrome/Safari                |
 | **P1012 (Schema Validation)**  | Ajuste do `datasource` para leitura via `env("DATABASE_URL")` e bypass do config moderno |
-| **Slots.map error**            | Garantia de tipagem e fallback de array vazio no retorno da API                           |
+| **Slots.map error**            | Garantia de tipagem e fallback de array vazio no retorno da API                          |
 
 ---
 
@@ -177,6 +176,7 @@ cd frontend
 npm install
 npm run dev
 ```
+
 =======
 
 ---
@@ -298,13 +298,13 @@ DatePicker locale | Fixed with date-fns
 ✔️ Frontend integrated  
 ✔️ Full booking flow completed  
 ✔️ Modern UI implemented
->>>>>>> README
 
 ---
 
 ## 🚧 Next Steps
 
 <<<<<<< HEAD
+
 - [ ] Sistema completo de autenticação (Dashboard Admin)
 - [ ] Cancelamento de agendamentos via token único
 - [ ] Notificações via WhatsApp/E-mail
@@ -315,28 +315,6 @@ DatePicker locale | Fixed with date-fns
 ## 💬 Conclusão
 
 Este projeto demonstra a integração real entre Frontend, Backend e Banco de Dados, cobrindo desafios de arquitetura, segurança e regras de negócio complexas. É uma base pronta para produção e escalável.
-
----
-
-<p align="center">Developed by Daniel Fernandes.</p>
-=======
-Full authentication system  
-Admin dashboard  
-Booking cancellation  
-Notifications (WhatsApp / Email)  
-Schedule management panel  
-Deployment (Vercel + Railway)
-
----
-
-## 💬 Conclusion
-
-This project delivers a complete booking system with:
-
-Real frontend/backend integration  
-Business logic implementation  
-Scalable architecture  
-Production-ready foundation
 
 ---
 
@@ -351,4 +329,3 @@ Which already puts it beyond basic tutorial-level applications.
 ---
 
 Made with 💻, ☕ and a bit of chaos.
->>>>>>> README
